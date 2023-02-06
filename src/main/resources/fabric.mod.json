@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "monsterball",
+  "version": "${version}",
+
+  "name": "Monster Ball",
+  "description": "Adding a monster ball to capture mobs.",
+  "authors": [
+    "Shutdoor"
+  ],
+  "contact": {
+  },
+
+  "license": "All Rights Reserved",
+  "icon": "assets/monsterball/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.shutdoor.monsterball.monsterBallMod"
+    ]
+  },
+  "mixins": [
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "cloth-config2": ">=8.2.88"
+  }
+}

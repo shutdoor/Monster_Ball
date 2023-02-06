@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "CSC",
+    "BBB"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "minecraft:black_dye"
+    },
+    "S": {
+      "item": "minecraft:stone_button"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "monsterball:monsterball",
+    "count": 1
+  }
+}

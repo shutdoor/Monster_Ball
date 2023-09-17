@@ -1,0 +1,9 @@
+{
+  "item.monsterball.monsterball": "Monster Ball",
+  "entity.monsterball.monsterball": "Monster Ball",
+  "tooltip.monsterball.stored": "Stored: %s",
+  "tooltip.monsterball.stored_custom_name": "Stored: %s (%s)",
+  "tooltip.monsterball.empty": "Empty",
+  "text.autoconfig.monsterball.title": "Monster Ball",
+  "text.autoconfig.monsterball.option.BLACKLIST": "Black List"
+}

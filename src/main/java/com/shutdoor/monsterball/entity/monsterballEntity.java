@@ -17,8 +17,9 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.hit.EntityHitResult;
@@ -51,14 +52,14 @@ public class monsterballEntity extends ThrownItemEntity {
 	@Override
 	protected void onCollision(HitResult hitResult) {
 		super.onCollision(hitResult);
-		if (!world.isClient) {
+		if (!getWorld().isClient) {
 			if (hitResult.getType() == HitResult.Type.BLOCK) {
 				if (this.hasEntity) {
-					Optional<Entity> loadEntity = EntityType.getEntityFromNbt(NBTHelper.getNbt(currentMonsterball, "StoredEntity"), this.world);
+					Optional<Entity> loadEntity = EntityType.getEntityFromNbt(NBTHelper.getNbt(currentMonsterball, "StoredEntity"), this.getWorld());
 					if (loadEntity.isPresent()) {
 						Entity spawnEntity = loadEntity.get();
 						spawnEntity.refreshPositionAndAngles(this.getX(), this.getY() + 1.0D, this.getZ(), this.getYaw(), 0.0F);
-						this.world.spawnEntity(spawnEntity);
+						this.getWorld().spawnEntity(spawnEntity);
 					}
 					// Always reset monsterball
 					NBTHelper.removeNbt(this.currentMonsterball, "StoredEntity");
@@ -88,7 +89,7 @@ public class monsterballEntity extends ThrownItemEntity {
 				}
 			}
 				this.dropStack(this.currentMonsterball, 0.2F);
-				this.world.sendEntityStatus(this, (byte) 3);
+				this.getWorld().sendEntityStatus(this, (byte) 3);
 				this.removeFromDimension();
 		}
 	}
@@ -97,7 +98,7 @@ public class monsterballEntity extends ThrownItemEntity {
 	public void handleStatus(byte id) {
 		if (id == 3) {
 			for (int i = 0; i < 8; ++i) {
-				this.world.addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, currentMonsterball)/*ParticleTypes.ITEM_SNOWBALL*/, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
+				this.getWorld().addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, currentMonsterball)/*ParticleTypes.ITEM_SNOWBALL*/, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
 			}
 		}
 	}
@@ -108,7 +109,7 @@ public class monsterballEntity extends ThrownItemEntity {
 	}
 
 	@Override
-	public Packet<?> createSpawnPacket() {
+	public Packet<ClientPlayPacketListener> createSpawnPacket() {
 		return new EntitySpawnS2CPacket(this);
 	}
 }

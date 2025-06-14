@@ -10,7 +10,7 @@ import java.util.List;
 
 @Config(name = "monsterball")
 public class monsterballConfig implements ConfigData {
-    @Comment("Blacklisted mobs will not be captured by the monsterball, ex: minecraft:zombie")
+    @Comment("Blacklisted mobs will not be captured by the monsterball, ex: \"minecraft:zombie\"")
     public List<String> BLACKLIST = new ArrayList<>();
 
     public static monsterballConfig getConfig() {
